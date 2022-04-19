@@ -112,41 +112,50 @@ footer {
     background: $component-bg-gradient;
     border-radius: 10px;
 
-    & > .modal_btns_container {
-        text-align: end;
-
-        & > .modal_closeBtn {
-            border: 0;
-            background: transparent;
-            color: $accent-color;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        & > .addBtn {
-            margin-top: 10px;
-            padding: 5px 15px;
-            border: 0;
-            border-radius: 3px;
-            background: $accent-color;
-            color: $smokywhite-color;
-            cursor: pointer;
-        }
+    & .modal_closeBtn {
+        border: 0;
+        background: transparent;
+        color: $accent-color;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
     }
 
-    .modal_inner {
-        margin-bottom: 10px;
-    
-        & > input {
-            width: 100%;
-        }
-    
-        & > p {
-            margin: 0;
-            color: $text-accent-color;
-        }
+    & .addBtn {
+        margin-top: 10px;
+        padding: 5px 15px;
+        border: 0;
+        border-radius: 3px;
+        background: $accent-color;
+        color: $smokywhite-color;
+        cursor: pointer;
     }
 }
+
+.modal_btns_container {
+    text-align: end;
+
+    & > button[type="submit"] {
+        padding: 5px 10px;
+        border: 0;
+        background: $accent-color;
+        color: $smokywhite-color;
+        cursor: pointer;
+    }
+}
+
+.modal_inner {
+    margin-bottom: 10px;
+
+    & > input {
+        width: 100%;
+    }
+
+    & > p {
+        margin: 0;
+        color: $text-accent-color;
+    }
+}
+
 
 // 반응형 작업
