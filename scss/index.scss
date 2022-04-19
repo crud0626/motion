@@ -1,0 +1,95 @@
+@import 'colors';
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('../images/cool-background.png') center/cover;
+    color: $smokywhite-color;
+}
+
+main {
+    margin: auto;
+    width: 80%; // 반응형 필요
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+// header
+header {
+    display: flex;
+    padding: 10px 0;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100px;
+    background-color: $bg-main-color;
+
+    & > h1 {
+        margin: 0;
+        color: $accent-color;
+    }
+}
+
+.header_button_container > button {
+    padding: 10px 15px;
+    color: $smokywhite-color;
+    background-color: $accent-color;
+    border: 0;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+// section
+
+section {
+    background-color: $document-bg-color;
+    flex-grow: 1;
+    overflow-y: scroll;
+
+    & .item {
+        display: flex;
+        justify-content: space-between;
+        background: $component-bg-gradient;
+        border: $border-color;
+        // 임시
+        margin-bottom: 20px;
+        // 
+        & > .item_text {
+            flex: 1;
+            margin-bottom: 1em;
+            padding: 0 10px;
+        }
+
+        & > .closeBtn {
+            padding-right: 10px;
+            border: 0;
+            background-color: transparent;
+            color: $accent-color;
+            cursor: pointer;
+        }
+    }
+
+    & .item_title {
+        color: $text-accent-color;
+    }
+}
+
+// footer
+footer {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: $bg-main-color;
+    font-size: 0.9rem;
+}
+
+// 반응형 작업
