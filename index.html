@@ -5,42 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motion</title>
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    <header>
-        <h1>MOTION</h1>
-        <div class="header_button_container">
-            <button data-role="image" title="image">IMAGE</button>
-            <button data-role="video" title="video">VIDEO</button>
-            <button data-role="note" title="note">NOTE</button>
-            <button data-role="task" title="task">TASK</button>
-        </div>
-    </header>
-    <section>
-        <div class="items_container">
-            <div class="item">
-                <iframe src="http://www.youtube.com/embed/HEYxgkLrzSg" width="320" height="180" frameborder="0"></iframe>
-                <span>아우토반의 붉은 사신</span>
+    <main>
+        <header>
+            <h1>MOTION</h1>
+            <div class="header_button_container">
+                <button data-role="image" title="image">IMAGE</button>
+                <button data-role="video" title="video">VIDEO</button>
+                <button data-role="note" title="note">NOTE</button>
+                <button data-role="task" title="task">TASK</button>
             </div>
-            <div class="item">
-                <img src="https://i.picsum.photos/id/786/320/180.jpg?hmac=g1vj-iy_QoZDDl20vAioPB1Y_2ppwF07enxe-KSmcJU" alt="image">
-                <span>image test</span>
+        </header>
+        <section>
+            <div class="items_container">
+                <div class="item">
+                    <iframe src="http://www.youtube.com/embed/HEYxgkLrzSg" width="320" height="180" frameborder="0"></iframe>
+                    <div class="item_text">
+                        <p class="item_title">아우토반의 붉은 사신</p>
+                    </div>
+                    <button class="closeBtn">X</button>
+                </div>
+                <div class="item">
+                    <img src="https://i.picsum.photos/id/786/320/180.jpg?hmac=g1vj-iy_QoZDDl20vAioPB1Y_2ppwF07enxe-KSmcJU" alt="image">
+                    <div class="item_text">
+                        <p class="item_title">image test</p>
+                    </div>
+                    <button class="closeBtn">X</button>
+                </div>
+                <div class="item">
+                    <div class="item_text">
+                        <p class="item_title">note test</p>
+                        <ul>
+                            <li>baba</li>
+                            <li>ba2</li>
+                        </ul>
+                    </div>
+                    <button class="closeBtn">X</button>
+                </div>
+                <div class="item">
+                    <div class="item_text">
+                        <p class="item_title">task test</p>
+                        <input type="checkbox" name="blahblah" id="blah">
+                        <label for="blah">blahblah</label>
+                    </div>
+                    <button class="closeBtn">X</button>
+                </div>
             </div>
-            <div class="item">
-                <span>note test</span>
-                <ul>
-                    <li>baba</li>
-                    <li>ba2</li>
-                </ul>
-            </div>
-            <div class="item">
-                <span>task test</span>
-                <input type="checkbox" name="blahblah" id="">
-            </div>
-        </div>
-    </section>
-    <footer>
-        <span>ⓒ Copyright 2022 crud0626. All rights reserved.</span>
-    </footer>
+        </section>
+        <footer>
+            <span>ⓒ Copyright 2022 crud0626. All rights reserved.</span>
+        </footer>
+    </main>
 </body>
 </html>
