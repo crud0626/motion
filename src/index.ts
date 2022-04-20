@@ -1,33 +1,15 @@
+import Modal from "./modal";
+
 const btnsContainer = document.querySelector(".header_button_container");
-
 const itemsContainer = document.querySelector(".items_container");
-
-const modalContainer = document.querySelector(".modal_container");
-const modalTitle = document.querySelector(".modal_title_container");
-const modalSub = document.querySelector(".modal_sub_container");
-
-const modalCloseBtn = document.querySelector(".modal_closeBtn");
-
-const addItemForm = document.querySelector(".addItemForm");
-
 const titleInput = document.querySelector("#titleInput");
 const subInput = document.querySelector("#subInput");
+const addItemForm = document.querySelector(".addItemForm");
+
+const modal = new Modal();
 
 let lastestRole: string = "";
 
-addItemForm?.addEventListener("submit", (event): void => {
-    event.preventDefault();
-    if (event.target instanceof HTMLFormElement) {
-        createItem();
-        handleModal(false);
-        if (titleInput instanceof HTMLInputElement && subInput instanceof HTMLInputElement) {
-            titleInput.value = "";
-            subInput.value = "";
-        }
-    }
-})
-
-// 
 function deleteItem(event: MouseEvent) {
     if(event.target instanceof HTMLButtonElement) {
         const targetItem = document.getElementById(event.target.id);
@@ -36,10 +18,17 @@ function deleteItem(event: MouseEvent) {
 }
 
 function createItem(): void {
-    const title: string = (<HTMLInputElement>titleInput).value;
-    const sub: string = (<HTMLInputElement>subInput).value;
     const itemID = Date.now().toString();
+    let title = "";
+    let sub = "";
 
+    if(titleInput instanceof HTMLInputElement &&
+        subInput instanceof HTMLInputElement)
+    {
+        title = titleInput.value;
+        sub = subInput.value;
+    }
+    
     const item = document.createElement("div");
     item.className = "item";
     item.id = itemID;
@@ -93,62 +82,27 @@ function createItem(): void {
     itemsContainer?.appendChild(item);
 }
 
+addItemForm?.addEventListener("submit", (event): void => {
+    event.preventDefault();
+    if (event.target instanceof HTMLFormElement) {
+        createItem();
+        modal.close();
+        if (titleInput instanceof HTMLInputElement && 
+            subInput instanceof HTMLInputElement) 
+        {
+            titleInput.value = "";
+            subInput.value = "";
+        }
+    }
+})
+
 btnsContainer?.addEventListener("click", (event) => {
     if(event.target instanceof HTMLButtonElement) {
         const role: string | undefined = event.target.dataset.role;
-        handleModal(true, role);
+        modal.open(role);
         if(typeof(role) === "string") {
             lastestRole = role;
         }
         
     }
 });
-
-modalCloseBtn?.addEventListener("click", () => {handleModal(false)});
-
-modalContainer?.addEventListener("mousedown", (event) => {
-    if(event.target instanceof HTMLDivElement && event.target.matches(".modal_container")) {
-        handleModal(false);
-    }
-});
-
-modalContainer?.addEventListener("keyup", (event) => {
-    if(event instanceof KeyboardEvent && event.key === "Escape") {
-        handleModal(false);
-    }
-})
-
-function handleModal(condition: boolean, role?: string): void {
-    if(modalContainer instanceof HTMLDivElement) {
-        if(condition) {
-            const modalSub = document.querySelector(".modal_sub");
-            
-            if(titleInput instanceof HTMLInputElement 
-                && subInput instanceof HTMLInputElement
-                && modalSub instanceof HTMLParagraphElement) 
-                {
-                switch(role) {
-                    case "image":
-                    case "video":
-                        titleInput.innerText = "Title";
-                        modalSub.innerText = "URL";
-                        subInput.name = "url";
-                        break;
-                    case "note":
-                    case "task":
-                        titleInput.innerText = "Title";
-                        modalSub.innerText = "Body";
-                        subInput.name = "body";
-                        break;
-                    default:
-                        break;
-                }
-                modalContainer.style.visibility = "visible";
-                titleInput.focus();
-                return;
-            }
-        }
-        modalContainer.style.visibility = "hidden";
-        return;
-    }
-}
