@@ -27,12 +27,28 @@ addItemForm?.addEventListener("submit", (event): void => {
     }
 })
 
+// 
+function deleteItem(event: MouseEvent) {
+    if(event.target instanceof HTMLButtonElement) {
+        const targetItem = document.getElementById(event.target.id);
+        targetItem?.remove();
+    }
+}
+
 function createItem(): void {
     const title: string = (<HTMLInputElement>titleInput).value;
     const sub: string = (<HTMLInputElement>subInput).value;
+    const itemID = Date.now().toString();
 
     const item = document.createElement("div");
     item.className = "item";
+    item.id = itemID;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "closeBtn";
+    deleteBtn.innerText = "X";
+    deleteBtn.addEventListener("click", (event) => deleteItem(event));
+    deleteBtn.id = itemID;
 
     switch(lastestRole) {
         case "image":
@@ -41,7 +57,6 @@ function createItem(): void {
                 <div class="item_text">
                     <p class="item_title">image test</p>
                 </div>
-                <button class="closeBtn">X</button>
             `;
             break;
         case "video":
@@ -50,7 +65,6 @@ function createItem(): void {
                 <div class="item_text">
                     <p class="item_title">${title}</p>
                 </div>
-                <button class="closeBtn">X</button>
             `;
             break;
         case "note":
@@ -61,7 +75,6 @@ function createItem(): void {
                         <li>${sub}</li>
                     </ul>
                 </div>
-                <button class="closeBtn">X</button>
             `;
             break;
         case "task":
@@ -71,12 +84,12 @@ function createItem(): void {
                     <input type="checkbox" name=${sub}>
                     <label for="blah">${sub}</label>
                 </div>
-                <button class="closeBtn">X</button>
             `;
             break;
         default:
             return;
     }
+    item.appendChild(deleteBtn);
     itemsContainer?.appendChild(item);
 }
 
