@@ -10,28 +10,34 @@ const modalCloseBtn = document.querySelector(".modal_closeBtn");
 
 const addItemForm = document.querySelector(".addItemForm");
 
+const titleInput = document.querySelector("#titleInput");
+const subInput = document.querySelector("#subInput");
+
 let lastestRole: string = "";
 
 addItemForm?.addEventListener("submit", (event): void => {
     event.preventDefault();
     if (event.target instanceof HTMLFormElement) {
         createItem();
+        handleModal(false);
+        if (titleInput instanceof HTMLInputElement && subInput instanceof HTMLInputElement) {
+            titleInput.value = "";
+            subInput.value = "";
+        }
     }
 })
 
 function createItem(): void {
-    const title: string = (<HTMLInputElement>document.querySelector("#modalTitle")).value;
-    const sub: string = (<HTMLInputElement>document.querySelector("#modalSub")).value;
+    const title: string = (<HTMLInputElement>titleInput).value;
+    const sub: string = (<HTMLInputElement>subInput).value;
 
     const item = document.createElement("div");
     item.className = "item";
 
-    console.log(lastestRole);
-
     switch(lastestRole) {
         case "image":
             item.innerHTML = `
-                <img src="https://i.picsum.photos/id/786/320/180.jpg?hmac=g1vj-iy_QoZDDl20vAioPB1Y_2ppwF07enxe-KSmcJU" alt="image">
+                <img src=${sub}/320/180 alt="image">
                 <div class="item_text">
                     <p class="item_title">image test</p>
                 </div>
@@ -87,40 +93,45 @@ btnsContainer?.addEventListener("click", (event) => {
 
 modalCloseBtn?.addEventListener("click", () => {handleModal(false)});
 
-modalContainer?.addEventListener("click", (event) => {
+modalContainer?.addEventListener("mousedown", (event) => {
     if(event.target instanceof HTMLDivElement && event.target.matches(".modal_container")) {
         handleModal(false);
     }
 });
 
+modalContainer?.addEventListener("keyup", (event) => {
+    if(event instanceof KeyboardEvent && event.key === "Escape") {
+        handleModal(false);
+    }
+})
+
 function handleModal(condition: boolean, role?: string): void {
     if(modalContainer instanceof HTMLDivElement) {
         if(condition) {
-            const titleElem = document.querySelector(".modal_title");
-            const subElem = document.querySelector(".modal_sub");
-            const subText = document.querySelector("#modalSub");
+            const modalSub = document.querySelector(".modal_sub");
             
-            if(titleElem instanceof HTMLParagraphElement 
-                && subElem instanceof HTMLParagraphElement
-                && subText instanceof HTMLInputElement) 
+            if(titleInput instanceof HTMLInputElement 
+                && subInput instanceof HTMLInputElement
+                && modalSub instanceof HTMLParagraphElement) 
                 {
                 switch(role) {
                     case "image":
                     case "video":
-                        titleElem.innerText = "Title";
-                        subElem.innerText = "URL";
-                        subText.name = "url";
+                        titleInput.innerText = "Title";
+                        modalSub.innerText = "URL";
+                        subInput.name = "url";
                         break;
                     case "note":
                     case "task":
-                        titleElem.innerText = "Title";
-                        subElem.innerText = "Body";
-                        subText.name = "body";
+                        titleInput.innerText = "Title";
+                        modalSub.innerText = "Body";
+                        subInput.name = "body";
                         break;
                     default:
                         break;
                 }
                 modalContainer.style.visibility = "visible";
+                titleInput.focus();
                 return;
             }
         }
