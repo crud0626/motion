@@ -16,7 +16,7 @@ body {
 
 main {
     margin: auto;
-    width: 80%; // 반응형 필요
+    width: 80%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -59,21 +59,28 @@ section {
         justify-content: space-between;
         background: $component-bg-gradient;
         border: $border-color;
-        // 임시
         margin-bottom: 20px;
-        // 
-        & > .item_text {
-            flex: 1;
-            margin-bottom: 1em;
-            padding: 0 10px;
+
+        & > iframe, img {
+            width: 100%;
         }
 
-        & > .closeBtn {
-            padding-right: 10px;
-            border: 0;
-            background-color: transparent;
-            color: $accent-color;
-            cursor: pointer;
+        & > .item_text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex: 1;
+            margin: 1em 0;
+            padding: 0 10px;
+            word-break: break-all;
+
+            & > .closeBtn {
+                padding-right: 10px;
+                border: 0;
+                background-color: transparent;
+                color: $accent-color;
+                cursor: pointer;
+            }
         }
     }
 
@@ -159,3 +166,28 @@ footer {
 
 
 // 반응형 작업
+@media screen and (min-width: 425px) {
+    .item > iframe, img {
+        max-width: 320px;
+    }
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+    main {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    main {
+        width: 100%;
+    }
+    
+    .item {
+        flex-direction: column;
+
+        & > iframe, img {
+            max-width: 425px;
+        }
+    }
+}

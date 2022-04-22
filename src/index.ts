@@ -75,54 +75,57 @@ function createItem(): void {
     item.className = "item";
     item.draggable = true;
     item.id = itemID;
-    
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.className = "closeBtn";
-    deleteBtn.innerText = "X";
-    deleteBtn.addEventListener("click", (event) => deleteItem(event));
-    deleteBtn.id = itemID;
+    item.addEventListener("click", (event): void => {
+        deleteItem(event);
+    })
 
     switch(lastestRole) {
         case "image":
             item.innerHTML = `
-                <img src=${sub}/320/180 alt="image">
+                <img src=${sub} alt="image">
                 <div class="item_text">
-                    <p class="item_title">image test</p>
+                    <p class="item_title">${title}</p>
+                    <button class="closeBtn" id=${itemID}>X</button>
                 </div>
             `;
             break;
         case "video":
             item.innerHTML = `
-                <iframe src=http://www.youtube.com/embed/${sub} width="320" height="180" frameborder="0"></iframe>
+                <iframe src=http://www.youtube.com/embed/${sub} frameborder="0"></iframe>
                 <div class="item_text">
                     <p class="item_title">${title}</p>
+                    <button class="closeBtn" id=${itemID}>X</button>
                 </div>
             `;
             break;
         case "note":
             item.innerHTML = `
                 <div class="item_text">
-                    <p class="item_title">${title}</p>
-                    <ul>
-                        <li>${sub}</li>
-                    </ul>
+                    <div>
+                        <p class="item_title">${title}</p>
+                        <ul>
+                            <li>${sub}</li>
+                        </ul>
+                    </div>
+                    <button class="closeBtn" id=${itemID}>X</button>
                 </div>
             `;
             break;
         case "task":
             item.innerHTML = `
                 <div class="item_text">
-                    <p class="item_title">${title}</p>
-                    <input type="checkbox" name=${sub}>
-                    <label for="blah">${sub}</label>
+                    <div>
+                        <p class="item_title">${title}</p>
+                        <input type="checkbox" name="blahblah" id="blah">
+                        <label for="blah">${sub}</label>
+                    </div>
+                    <button class="closeBtn" id=${itemID}>X</button>
                 </div>
             `;
             break;
         default:
             return;
     }
-    item.appendChild(deleteBtn);
     itemsContainer?.appendChild(item);
     dragController.add(item);
 }
