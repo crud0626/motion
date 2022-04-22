@@ -116,8 +116,8 @@ function createItem(): void {
                 <div class="item_text">
                     <div>
                         <p class="item_title">${title}</p>
-                        <input type="checkbox" name="blahblah" id="blah">
-                        <label for="blah">${sub}</label>
+                        <input type="checkbox" name="blahblah" id="input${itemID}">
+                        <label for="input${itemID}">${sub}</label>
                     </div>
                     <button class="closeBtn" id=${itemID}>X</button>
                 </div>
