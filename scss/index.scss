@@ -58,7 +58,7 @@ section {
         display: flex;
         justify-content: space-between;
         background: $component-bg-gradient;
-        border: $border-color;
+        border: 1px solid $border-color;
         margin-bottom: 20px;
 
         & > iframe, img {
