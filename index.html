@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motion</title>
     <link rel="stylesheet" href="./css/index.css">
-    <script src="./dist/index.js" defer></script>
+    <script type="module" src="./dist/index.js" defer></script>
 </head>
 <body>
     <main>
@@ -21,21 +21,21 @@
         </header>
         <section>
             <div class="items_container">
-                <div class="item">
+                <div class="item" draggable="true">
                     <iframe src="http://www.youtube.com/embed/HEYxgkLrzSg" width="320" height="180" frameborder="0"></iframe>
                     <div class="item_text">
                         <p class="item_title">아우토반의 붉은 사신</p>
                     </div>
                     <button class="closeBtn">X</button>
                 </div>
-                <div class="item">
+                <div class="item" draggable="true">
                     <img src="https://i.picsum.photos/id/786/320/180.jpg?hmac=g1vj-iy_QoZDDl20vAioPB1Y_2ppwF07enxe-KSmcJU" alt="image">
                     <div class="item_text">
                         <p class="item_title">image test</p>
                     </div>
                     <button class="closeBtn">X</button>
                 </div>
-                <div class="item">
+                <div class="item" draggable="true">
                     <div class="item_text">
                         <p class="item_title">note test</p>
                         <ul>
@@ -45,7 +45,7 @@
                     </div>
                     <button class="closeBtn">X</button>
                 </div>
-                <div class="item">
+                <div class="item" draggable="true">
                     <div class="item_text">
                         <p class="item_title">task test</p>
                         <input type="checkbox" name="blahblah" id="blah">
